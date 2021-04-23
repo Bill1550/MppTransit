@@ -12,4 +12,5 @@ rootProject.name = "MppTransit"
 
 include(":androidApp")
 include(":shared")
+include(":jvmApp")
 
