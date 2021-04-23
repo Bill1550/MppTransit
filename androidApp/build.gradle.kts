@@ -19,11 +19,11 @@ dependencies {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(Versions.Android.compileSdk)
     defaultConfig {
         applicationId = "com.loneoaktech.apps.androidApp"
-        minSdkVersion(24)
-        targetSdkVersion(29)
+        minSdkVersion(Versions.Android.minSdk)
+        targetSdkVersion(Versions.Android.targetSdk)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -36,4 +36,15 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    compileOptions {
+//        incremental = true
+        sourceCompatibility = Options.javaVersion
+        targetCompatibility = Options.javaVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = Options.javaVersion.toString()
+//        freeCompilerArgs = Options.freeCompilerArgs
+    }
+
 }

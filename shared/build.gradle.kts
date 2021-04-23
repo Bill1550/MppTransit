@@ -12,6 +12,15 @@ version = "1.0-SNAPSHOT"
 
 kotlin {
     android()
+    jvm {
+        compilations["main"].kotlinOptions {
+            jvmTarget = Options.javaVersion.toString() //"1.8"
+        }
+        testRuns["test"].executionTask.configure {
+            useJUnit()
+        }
+//        withJava()
+    }
     ios {
         binaries {
             framework {
@@ -43,17 +52,28 @@ kotlin {
                 implementation("junit:junit:4.13")
             }
         }
+        val jvmMain by getting {
+            dependencies {
+            }
+        }
+
+        val jvmTest by getting {
+            dependencies {
+                implementation(kotlin("test-junit"))
+            }
+        }
         val iosMain by getting
         val iosTest by getting
+
     }
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(Versions.Android.compileSdk)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(29)
+        minSdkVersion(Versions.Android.minSdk)
+        targetSdkVersion(Versions.Android.targetSdk)
     }
 }
 
